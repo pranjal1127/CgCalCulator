@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  
+<style>
+  .card{
+    max-width: 500px;
+    border: 1.5px solid rgb(179, 176, 176);
+   
+    margin: 2rem auto;
+    padding: 10px 10px;
+}
+
+</style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+   <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+     <a class="navbar-brand mx-auto" href="#">CG Calculator</a>  
+   </nav>
+   
+   <div class="card m-5  mx-auto fixed">
+     <form action="">
+       
+         <label for="id">Your Id</label>
+         <input type="text" class="form-control" name="Id" id="Id"  placeholder="Enter your ID">
+         <br>
+         <label for="semester">Semester</label>
+        <select class="form-control" name="semester" id="semester">
+          <option value="">--semester--</option>
+          <option value="1">I semester</option>
+          <option value="2">II semester</option>
+          <option value="3">III semester</option>
+          <option value="4">IV semester</option>
+          <option value="5">V semester</option>
+          <option value="6">VI semester</option>
+          <option value="7">VII semester</option>
+          <option value="8">VIII semester</option>
+        </select>
+        <br>
+        <label for="branch">Branch</label>
+        <select class="form-control" name="branch" id="branch" >
+          <option value=''>--branch--</option>
+          <option value="CSE">CSE</option>
+          <option value="ECE">ECE</option>
+        </select>
+        <div id="p"></div>
+        <br>
+        <span>Your CG is : </span><span id="cg"></span>
+
+        
+
+        
+
+         
+       </div>
+     </form>
+   </div>
+    <script>
+      semTotal = 0;
+      totalCredit = 0;
+      var p = []
+      function subName(name,credit){
+        var x = `<br><label for="subName">${name}</label>
+        <select class="form-control" name="${credit}"  class="sub" onchange="calculate(event)" id="${name}">
+          <option value=''>--your grade--</option>
+          <option value="10">AA</option>
+          <option value="9">AB</option>
+          <option value="8">BB</option>
+          <option value="7">BC</option>
+          <option value="6">CC</option>
+          <option value="6">CD</option>
+          <option value="6">DD</option>
+        </select>`
+        return x;
+      }
+
+      $(document).on('change', '#branch', function(){
+        var b_name = $(this).val();
+        var sem = $('#semester').val();
+        p = list.filter( i => i.branch == b_name).filter(i => i.semester == sem)[0].subject;
+        console.log(p);
+        for(let i = 0; i < p.length;i++){
+          $('#p').append(subName(p[i].code,p[i].credit)); 
+          
+        }       
+
+      });
+      
+      
+        
+    
+      function calculate(event){
+        let c = Number(event.target.name)
+        let v = event.target.value
+        let t = c*v
+        semTotal += t
+        totalCredit += c
+        $('#cg').html(semTotal/totalCredit);
+
+
+
+
+        console.log(event.target.value,semTotal,totalCredit)
+        
+      }
+      
+      
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var list = [
+    {
+        "semester" : "1",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "MAT101" , "credit" : 3},
+          {"code" : "ECT101" , "credit" : 3},
+          {"code" : "ECT103" , "credit" : 3},
+          {"code" : "CST101" , "credit" : 3},
+          {"code" : "HST101" , "credit" : 2},
+          {"code" : "ECP101" , "credit" : 1},
+          {"code" : "CSP101" , "credit" : 1},
+          {"code" : "CSP111" , "credit" : 2},
+          {"code" : "HSP101" , "credit" : 1},
+          {"code" : "OTP101" , "credit" : 1},
+        ]
+      },
+      {
+        "semester" : "1",
+        "branch" : "ECE",
+        "subject" : [
+          {"code" : "MAT101" , "credit" : 3},
+          {"code" : "ECT101" , "credit" : 3},
+          {"code" : "ECT103" , "credit" : 3},
+          {"code" : "CST101" , "credit" : 3},
+          {"code" : "HST101" , "credit" : 2},
+          {"code" : "ECP101" , "credit" : 1},
+          {"code" : "CSP101" , "credit" : 1},
+          {"code" : "CSP111" , "credit" : 2},
+          {"code" : "HSP101" , "credit" : 1},
+          {"code" : "OTP101" , "credit" : 1},
+        ]
+      },
+      {
+        "semester" : "2",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "MAT102" , "credit" : 3},
+          {"code" : "ECT102" , "credit" : 3},
+          {"code" : "CST102" , "credit" : 3},
+          {"code" : "CST104" , "credit" : 3},
+          {"code" : "HST102" , "credit" : 1},
+          {"code" : "HST104" , "credit" : 2},
+          {"code" : "ECP102" , "credit" : 1},
+          {"code" : "CSP102" , "credit" : 1},
+          {"code" : "CSP112" , "credit" : 2},
+          {"code" : "HSP104" , "credit" : 1},
+          {"code" : "OTD102" , "credit" : 1},
+        ]
+      },
+      {
+        "semester" : "3",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "MAT201" , "credit" : 3},
+          {"code" : "ECT201" , "credit" : 3},
+          {"code" : "ECT209" , "credit" : 3},
+          {"code" : "CST201" , "credit" : 3},
+          {"code" : "CST203" , "credit" : 3},
+          {"code" : "BMT201" , "credit" : 3},
+          {"code" : "ECP201" , "credit" : 1},
+          {"code" : "CSP201" , "credit" : 1},
+          {"code" : "CSP203" , "credit" : 1},
+          {"code" : "CSP211" , "credit" : 2}
+        ]
+      },
+      {
+        "semester" : "4",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "CST202" , "credit" : 3},
+          {"code" : "CST204" , "credit" : 3},
+          {"code" : "CST206" , "credit" : 3},
+          {"code" : "CST208" , "credit" : 3},
+          {"code" : "CST210" , "credit" : 3},
+          {"code" : "HST202" , "credit" : 3},
+          {"code" : "CSP204" , "credit" : 1},
+          {"code" : "CSP206" , "credit" : 1},
+          {"code" : "CSP208" , "credit" : 1},
+          {"code" : "HSP202" , "credit" : 1}
+        ]
+      },
+      {
+        "semester" : "5",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "CST301" , "credit" : 3},
+          {"code" : "CST303" , "credit" : 3},
+          {"code" : "CST305" , "credit" : 3},
+          {"code" : "CST307" , "credit" : 3},
+          {"code" : "CST309" , "credit" : 3},
+          {"code" : "BMT301" , "credit" : 3},
+          {"code" : "CSP303" , "credit" : 1},
+          {"code" : "CSP305" , "credit" : 1},
+          {"code" : "CSP307" , "credit" : 1},
+          {"code" : "CSD309" , "credit" : 1}
+        ]
+      },
+      {
+        "semester" : "6",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "MAT302" , "credit" : 3},
+          {"code" : "CST302" , "credit" : 3},
+          {"code" : "CST304" , "credit" : 3},
+          {"code" : "HST302" , "credit" : 3},
+          {"code" : "CSD300" , "credit" : 6},
+          {"code" : "CSP302" , "credit" : 2},
+          {"code" : "CSP304" , "credit" : 1},
+          {"code" : "HSP302" , "credit" : 1}
+        ]
+      },
+      {
+        "semester" : "7",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "CST401" , "credit" : 3},
+          {"code" : "CST403" , "credit" : 3},
+          {"code" : "OTT401" , "credit" : 3},
+          {"code" : "CSD405" , "credit" : 6},
+          {"code" : "CSD407" , "credit" : 1}
+        ]
+      },
+      {
+        "semester" : "8",
+        "branch" : "CSE",
+        "subject" : [
+          {"code" : "CST402" , "credit" : 3},
+          {"code" : "CST404" , "credit" : 3},
+          {"code" : "OTT402" , "credit" : 3},
+          {"code" : "BMT402" , "credit" : 3},
+          {"code" : "CSP402" , "credit" : 1},
+          {"code" : "CSP408" , "credit" : 1}
+        ]
+      },
+    ]
+    </script>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
