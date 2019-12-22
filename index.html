@@ -16,16 +16,19 @@
     padding: 10px 10px;
 }
 
+
 </style>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-   <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+   <nav class="navbar navbar-expand-sm navbar-light bg-primary ">
      <a class="navbar-brand mx-auto" href="#">CG Calculator</a>  
    </nav>
    
-   <div class="card m-5  mx-auto fixed">
+  
+   <div class="card m-5  mx-auto ">
+      
      <form action="">
        
          <label for="id">Your Id</label>
@@ -102,10 +105,34 @@
         let t = c*v
         semTotal += t
         totalCredit += c
-        $('#cg').html((semTotal/totalCredit).toFixed(2))
+        $('#cg').html((semTotal/totalCredit).toFixed(2));
+
+
+
+
+        console.log(event.target.value,semTotal,totalCredit)
         
       }
+      
+      
+
+
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var list = [
     {
         "semester" : "1",
