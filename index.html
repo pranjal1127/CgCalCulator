@@ -83,6 +83,9 @@
         </select>`
         return x;
       }
+      $(document).on('change','#semester',function(){
+        document.getElementById("branch").disabled = false;
+      })
 
       $(document).on('change', '#branch', function(){
         var b_name = $(this).val();
@@ -115,9 +118,7 @@
       }
       
       
-       $(document).on('change','#semester',function(){
-        document.getElementById("branch").disabled = false;
-      })
+       
       
 
 
