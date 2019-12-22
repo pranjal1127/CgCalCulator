@@ -47,8 +47,8 @@
           <option value="8">VIII semester</option>
         </select>
         <br>
-        <label for="branch" disabled>Branch</label>
-        <select class="form-control" name="branch" id="branch" >
+        <label for="branch">Branch</label>
+        <select class="form-control" name="branch" id="branch" disabled >
           <option value=''>--branch--</option>
           <option value="CSE">CSE</option>
           <option value="ECE">ECE</option>
@@ -86,7 +86,6 @@
       $(document).on('change','#semester',function(){
         document.getElementById("branch").disabled = false;
       })
-
       $(document).on('change', '#branch', function(){
         var b_name = $(this).val();
         var sem = $('#semester').val();
@@ -117,8 +116,6 @@
         
       }
       
-      
-       
       
 
 
