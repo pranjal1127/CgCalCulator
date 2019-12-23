@@ -29,13 +29,13 @@
   
    <div class="card m-5  mx-auto ">
       
-     <form action="">
+     <form action="" >
        
          <label for="id">Your Id</label>
          <input type="text" class="form-control" name="Id" id="Id"  placeholder="Enter your ID">
          <br>
          <label for="semester">Semester</label>
-        <select class="form-control" name="semester" id="semester">
+        <select class="form-control" name="semester" id="semester" >
           <option value="">--semester--</option>
           <option value="1">I semester</option>
           <option value="2">II semester</option>
@@ -48,13 +48,15 @@
         </select>
         <br>
         <label for="branch">Branch</label>
-        <select class="form-control" name="branch" id="branch" disabled = "true" >
+        <select class="form-control" name="branch" id="branch" disabled >
           <option value=''>--branch--</option>
           <option value="CSE">CSE</option>
           <option value="ECE">ECE</option>
         </select>
         <div id="p"></div>
         <br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
         <span>Your CG is : </span><span id="cg"></span>
 
         
@@ -68,10 +70,12 @@
     <script>
       semTotal = 0;
       totalCredit = 0;
+      var prevGrade = 0;
+      var prevCredit = 0;
       var p = []
       function subName(name,credit){
         var x = `<br><label for="subName">${name}</label>
-        <select class="form-control" name="${credit}"  class="sub" onchange="calculate(event)" id="${name}">
+        <select class="form-control" name="${credit}"  class="sub" onchange="calculate(event)" onclick="prev(event)" id="${name}">
           <option value=''>--your grade--</option>
           <option value="10">AA</option>
           <option value="9">AB</option>
@@ -97,22 +101,34 @@
         }       
 
       });
+
+      function prev(event){
+        if(event.target.value == ""){
+          prevCredit = 0;
+        }
+        else{
+            prevCredit = event.target.name;
+            prevGrade = event.target.value;
+        }
+
+      }
       
       
         
     
       function calculate(event){
-        let c = Number(event.target.name)
+        if(event.target.value == ""){
+          
+        }
+        else{
+          let c = Number(event.target.name)
         let v = event.target.value
         let t = c*v
-        semTotal += t
-        totalCredit += c
+        semTotal += t - (prevCredit*prevGrade)
+        totalCredit += c - prevCredit;
         $('#cg').html((semTotal/totalCredit).toFixed(2));
-
-
-
-
-        console.log(event.target.value,semTotal,totalCredit)
+          }
+        console.log(event.target.value,semTotal,totalCredit);
         
       }
       
