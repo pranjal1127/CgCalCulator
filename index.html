@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
   <body>
+    
    <nav class="navbar navbar-expand-sm navbar-light bg-primary ">
      <a class="navbar-brand mx-auto" href="#">CG Calculator</a></nav>
 
@@ -60,6 +61,14 @@
   var prevCredit = 0;
   var p = [];
 // get value from IIIT_kota.json file
+  var iiitk = []
+  fetch("./IIIT_kota.json").then(function(res){
+    return res.json();
+    
+  }).then(function(data){
+    iiitk = data
+    console.log(data)
+  })
 
 
 
@@ -84,7 +93,7 @@
   $(document).on('change', '#branch', function(){
     var b_name = $(this).val();
     var sem = $('#semester').val();
-    p = list.filter( i => i.branch == b_name).filter(i => i.semester == sem)[0].subject;
+    p = iiitk.filter( i => i.branch == b_name).filter(i => i.semester == sem)[0].subject;
     console.log(p);
     for(let i = 0; i < p.length;i++){
       $('#subjects').append(subName(p[i].code,p[i].credit)); 
@@ -115,274 +124,6 @@
     $('#cg').html((semTotal/totalCredit).toFixed(2));          
     console.log(event.target.value,semTotal,totalCredit,prevCredit);        
   }
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var list = [
-{
-    "semester" : "1",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "MAT101" , "credit" : 3},
-      {"code" : "ECT101" , "credit" : 3},
-      {"code" : "ECT103" , "credit" : 3},
-      {"code" : "CST101" , "credit" : 3},
-      {"code" : "HST101" , "credit" : 2},
-      {"code" : "ECP101" , "credit" : 1},
-      {"code" : "CSP101" , "credit" : 1},
-      {"code" : "CSP111" , "credit" : 2},
-      {"code" : "HSP101" , "credit" : 1},
-      {"code" : "OTP101" , "credit" : 1},
-    ]
-  },
-  {
-    "semester" : "1",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "MAT101" , "credit" : 3},
-      {"code" : "ECT101" , "credit" : 3},
-      {"code" : "ECT103" , "credit" : 3},
-      {"code" : "CST101" , "credit" : 3},
-      {"code" : "HST101" , "credit" : 2},
-      {"code" : "ECP101" , "credit" : 1},
-      {"code" : "CSP101" , "credit" : 1},
-      {"code" : "CSP111" , "credit" : 2},
-      {"code" : "HSP101" , "credit" : 1},
-      {"code" : "OTP101" , "credit" : 1},
-    ]
-  },
-  {
-    "semester" : "2",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "MAT102" , "credit" : 3},
-      {"code" : "ECT102" , "credit" : 3},
-      {"code" : "CST102" , "credit" : 3},
-      {"code" : "CST104" , "credit" : 3},
-      {"code" : "HST102" , "credit" : 1},
-      {"code" : "HST104" , "credit" : 2},
-      {"code" : "ECP102" , "credit" : 1},
-      {"code" : "CSP102" , "credit" : 1},
-      {"code" : "CSP112" , "credit" : 2},
-      {"code" : "HSP104" , "credit" : 1},
-      {"code" : "OTD102" , "credit" : 1},
-    ]
-  },
-  {
-    "semester" : "2",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "MAT102" , "credit" : 3},
-      {"code" : "ECT102" , "credit" : 3},
-      {"code" : "CST102" , "credit" : 3},
-      {"code" : "CST104" , "credit" : 3},
-      {"code" : "HST102" , "credit" : 1},
-      {"code" : "HST104" , "credit" : 2},
-      {"code" : "ECP102" , "credit" : 1},
-      {"code" : "CSP102" , "credit" : 1},
-      {"code" : "CSP112" , "credit" : 2},
-      {"code" : "HSP104" , "credit" : 1},
-      {"code" : "OTD102" , "credit" : 1},
-    ]
-  },
-  {
-    "semester" : "3",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "MAT201" , "credit" : 3},
-      {"code" : "ECT201" , "credit" : 3},
-      {"code" : "ECT209" , "credit" : 3},
-      {"code" : "CST201" , "credit" : 3},
-      {"code" : "CST203" , "credit" : 3},
-      {"code" : "BMT201" , "credit" : 3},
-      {"code" : "ECP201" , "credit" : 1},
-      {"code" : "CSP201" , "credit" : 1},
-      {"code" : "CSP203" , "credit" : 1},
-      {"code" : "CSP211" , "credit" : 2}
-    ]
-  },
-  {
-    "semester" : "3",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "MAT201" , "credit" : 3},
-      {"code" : "ECT201" , "credit" : 3},
-      {"code" : "ECT203" , "credit" : 3},
-      {"code" : "ECT205" , "credit" : 3},
-      {"code" : "ECT207" , "credit" : 3},
-      {"code" : "CST203" , "credit" : 3},
-      {"code" : "ECP201" , "credit" : 1},
-      {"code" : "ECP203" , "credit" : 1},
-      {"code" : "CSP203" , "credit" : 1},
-      {"code" : "CSP211" , "credit" : 2}
-    ]
-  },
-  {
-    "semester" : "4",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "CST202" , "credit" : 3},
-      {"code" : "CST204" , "credit" : 3},
-      {"code" : "CST206" , "credit" : 3},
-      {"code" : "CST208" , "credit" : 3},
-      {"code" : "CST210" , "credit" : 3},
-      {"code" : "HST202" , "credit" : 3},
-      {"code" : "CSP204" , "credit" : 1},
-      {"code" : "CSP206" , "credit" : 1},
-      {"code" : "CSP208" , "credit" : 1},
-      {"code" : "HSP202" , "credit" : 1}
-    ]
-  },
-  {
-    "semester" : "4",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "CST204" , "credit" : 3},
-      {"code" : "ECT202" , "credit" : 3},
-      {"code" : "ECT204" , "credit" : 3},
-      {"code" : "ECT206" , "credit" : 3},
-      {"code" : "HST202" , "credit" : 3},
-      {"code" : "MAT202" , "credit" : 3},
-      {"code" : "CSP204" , "credit" : 1},
-      {"code" : "ECP202" , "credit" : 1},
-      {"code" : "ECP204" , "credit" : 1},
-      {"code" : "HSP202" , "credit" : 1}
-    ]
-  },
-  {
-    "semester" : "5",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "CST301" , "credit" : 3},
-      {"code" : "CST303" , "credit" : 3},
-      {"code" : "CST305" , "credit" : 3},
-      {"code" : "CST307" , "credit" : 3},
-      {"code" : "CST309" , "credit" : 3},
-      {"code" : "BMT301" , "credit" : 3},
-      {"code" : "CSP303" , "credit" : 1},
-      {"code" : "CSP305" , "credit" : 1},
-      {"code" : "CSP307" , "credit" : 1},
-      {"code" : "CSD309" , "credit" : 1}
-    ]
-  },
-  {
-    "semester" : "5",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "ECT301" , "credit" : 3},
-      {"code" : "ECT303" , "credit" : 3},
-      {"code" : "ECT305" , "credit" : 3},
-      {"code" : "ECT301" , "credit" : 3},
-      {"code" : "DL-5.1" , "credit" : 3},
-      {"code" : "OL-5.1" , "credit" : 3},          
-      {"code" : "ECP301" , "credit" : 1},
-      {"code" : "ECP303" , "credit" : 1},
-      {"code" : "ECP305" , "credit" : 1},
-      {"code" : "OL-5.1 LAB" , "credit" : 1},
-    
-    ]
-  },
-  {
-    "semester" : "6",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "MAT302" , "credit" : 3},
-      {"code" : "CST302" , "credit" : 3},
-      {"code" : "CST304" , "credit" : 3},
-      {"code" : "HST302" , "credit" : 3},
-      {"code" : "CSD300" , "credit" : 6},
-      {"code" : "CSP302" , "credit" : 2},
-      {"code" : "CSP304" , "credit" : 1},
-      {"code" : "HSP302" , "credit" : 1}
-    ]
-  },
-  {
-    "semester" : "6",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "ECT302" , "credit" : 3},
-      {"code" : "ECT304" , "credit" : 3},
-      {"code" : "ECT306" , "credit" : 3},
-      {"code" : "OL-6.1" , "credit" : 3},          
-      {"code" : "ECP302" , "credit" : 1},
-      {"code" : "ECD302" , "credit" : 6},
-      {"code" : "HSP304" , "credit" : 1},
-      {"code" : "ECD304" , "credit" : 1},
-      {"code" : "OL-6.1 LAB" , "credit" : 1},
-    
-    ]
-  },
-  {
-    "semester" : "7",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "CST401" , "credit" : 3},
-      {"code" : "CST403" , "credit" : 3},
-      {"code" : "OTT401" , "credit" : 3},
-      {"code" : "CSD405" , "credit" : 6},
-      {"code" : "CSD407" , "credit" : 1}
-    ]
-  },
-  {
-    "semester" : "7",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "DL-7.1" , "credit" : 3},
-      {"code" : "FL-7.1" , "credit" : 1},
-      {"code" : "FL-7.2" , "credit" : 1},
-      {"code" : "FL-7.3" , "credit" : 1},
-      {"code" : "HL-7.1" , "credit" : 1},
-      {"code" : "ECD401" , "credit" : 6},
-      {"code" : "ECD403" , "credit" : 1},
-    
-    ]
-  },
-  {
-    "semester" : "8",
-    "branch" : "CSE",
-    "subject" : [
-      {"code" : "CST402" , "credit" : 3},
-      {"code" : "CST404" , "credit" : 3},
-      {"code" : "OTT402" , "credit" : 3},
-      {"code" : "BMT402" , "credit" : 3},
-      {"code" : "CSP402" , "credit" : 1},
-      {"code" : "CSP408" , "credit" : 1}
-    ]
-  },
-  {
-    "semester" : "8",
-    "branch" : "ECE",
-    "subject" : [
-      {"code" : "DL-8.1" , "credit" : 3},
-      {"code" : "DL-8.2" , "credit" : 3},
-      {"code" : "FL-8.1" , "credit" : 1},
-      {"code" : "FL-8.2" , "credit" : 1},
-      {"code" : "FL-8.3" , "credit" : 1},
-      {"code" : "FL-8.4" , "credit" : 1},
-      {"code" : "FL-8.5" , "credit" : 1},
-      {"code" : "FL-8.6" , "credit" : 1},
-      {"code" : "HL-8.1" , "credit" : 3}
-    
-    ]
-  },
-]
 </script>
       
     <!-- Optional JavaScript -->
