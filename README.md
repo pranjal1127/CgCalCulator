@@ -7,7 +7,7 @@ see demo on https://pranjal1127.github.io/CgCalCulator/
 
 
 
-**Currently It's only for IIIT KOTA**(will be improved soon for others too*)
+**Currently It's only for IIIT KOTA**
 
 If you want to add your collage in it. Just push your college semester and branchwise sub,credit data as json file(each semester)
 
